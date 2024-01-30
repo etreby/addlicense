@@ -306,7 +306,8 @@ func licenseHeader(path string, tmpl *template.Template, data licenseData) ([]by
 	case ".html", ".xml", ".vue", ".wxi", ".wxl", ".wxs":
 		lic, err = executeTemplate(tmpl, data, "<!--", " ", "-->")
 	case ".php":
-		lic, err = executeTemplate(tmpl, data, "", "// ", "")
+		//lic, err = executeTemplate(tmpl, data, "", "// ", "")
+                lic, err = executeTemplate(tmpl, data, "", "", "")
 	case ".j2":
 		lic, err = executeTemplate(tmpl, data, "{#", "", "#}")
 	case ".ml", ".mli", ".mll", ".mly":
@@ -375,10 +376,10 @@ func hasLicense(b []byte) bool {
 		n = len(b)
 	}
 	/*
-    return bytes.Contains(bytes.ToLower(b[:n]), []byte("copyright")) ||
-		bytes.Contains(bytes.ToLower(b[:n]), []byte("mozilla public")) ||
-		bytes.Contains(bytes.ToLower(b[:n]), []byte("spdx-license-identifier"))
-    */
-    //only check for IBM unique license key if exist "6949-70Y" in the file
-    return bytes.Contains(bytes.ToLower(b[:n]), []byte("6949-70Y"))
+        return bytes.Contains(bytes.ToLower(b[:n]), []byte("copyright")) ||
+                    bytes.Contains(bytes.ToLower(b[:n]), []byte("mozilla public")) ||
+                    bytes.Contains(bytes.ToLower(b[:n]), []byte("spdx-license-identifier"))
+        */
+        //only check for IBM unique license key if exist "6949-70Y" in the file
+        return bytes.Contains(bytes.ToLower(b[:n]), []byte("6949-70y"))
 }
