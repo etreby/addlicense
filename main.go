@@ -14,8 +14,6 @@
 
 // This program ensures source code files have copyright license headers.
 // See usage with "addlicense -h".
-
-//nolint:unparam
 package main
 
 import (
@@ -308,9 +306,7 @@ func licenseHeader(path string, tmpl *template.Template, data licenseData) ([]by
 	case ".html", ".xml", ".vue", ".wxi", ".wxl", ".wxs":
 		lic, err = executeTemplate(tmpl, data, "<!--", " ", "-->")
 	case ".php":
-		//lic, err = executeTemplate(tmpl, data, "", "// ", "")
-		//mohamed.wafaa@ibm.com, remove // from the license
-		lic, err = executeTemplate(tmpl, data, "", "", "")
+		lic, err = executeTemplate(tmpl, data, "", "// ", "")
 	case ".j2":
 		lic, err = executeTemplate(tmpl, data, "{#", "", "#}")
 	case ".ml", ".mli", ".mll", ".mly":
@@ -378,13 +374,7 @@ func hasLicense(b []byte) bool {
 	if len(b) < 1000 {
 		n = len(b)
 	}
-
-	/*
-		return bytes.Contains(bytes.ToLower(b[:n]), []byte("copyright")) ||
-			bytes.Contains(bytes.ToLower(b[:n]), []byte("mozilla public")) ||
-			bytes.Contains(bytes.ToLower(b[:n]), []byte("spdx-license-identifier"))
-	*/
-	//mohamed.wafaa@ibm.com
-	//only check for IBM unique license key if exist "6949-70Y" in the file
-	return bytes.Contains(bytes.ToLower(b[:n]), []byte("6949-70y"))
+	return bytes.Contains(bytes.ToLower(b[:n]), []byte("copyright")) ||
+		bytes.Contains(bytes.ToLower(b[:n]), []byte("mozilla public")) ||
+		bytes.Contains(bytes.ToLower(b[:n]), []byte("spdx-license-identifier"))
 }
