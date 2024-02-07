@@ -10,7 +10,7 @@ addlicense requires go 1.16 or later.
 
 ## install
 
-    go install github.com/google/addlicense@latest
+    go install github.com/etreby/addlicense@latest
 
 ## usage
 
@@ -48,20 +48,20 @@ docker pull ghcr.io/google/addlicense:latest
 Alternately, you can build it from source yourself:
 
 ```bash
-docker build -t ghcr.io/google/addlicense .
+docker build -t ghcr.io/etreby/addlicense .
 ```
 
 Once you have the image, you can test that it works by running:
 
 ```bash
-docker run -it ghcr.io/google/addlicense -h
+docker run -it ghcr.io/etreby/addlicense -h
 ```
 
 Finally, to run it, mount the directory you want to scan to `/src` and pass the
 appropriate addlicense flags:
 
 ```bash
-docker run -it -v ${PWD}:/src ghcr.io/google/addlicense -c "Google LLC" *.go
+docker run -it -v ${PWD}:/src ghcr.io/etreby/addlicense -c "Google LLC" *.go
 ```
 
 ## license
